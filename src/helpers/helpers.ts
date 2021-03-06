@@ -1,8 +1,15 @@
 export const differenceBetweenDates = (date: string): string => {
+  let timeWord: string = "hour";
   let timeDifference: number = Math.floor(
-    (Date.now() - Date.parse(date)) / (1000 * 60 * 60 * 24)
+    (Date.now() - Date.parse(date)) / (1000 * 60 * 60)
   );
-  let word: string = timeDifference > 1 ? "days" : "day";
+
+  if (timeDifference > 24) {
+    timeDifference = Math.floor((timeDifference = timeDifference / 24));
+    timeWord = "day";
+  }
+
+  let word: string = timeDifference > 1 ? `${timeWord}s` : timeWord;
 
   return timeDifference.toString() + " " + word;
 };

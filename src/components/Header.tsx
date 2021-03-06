@@ -16,6 +16,10 @@ const MainContainer = styled.div`
 
   display: flex;
   justify-content: center;
+
+  @media (max-width: 580px) {
+    border-radius: 0;
+  }
 `;
 
 const ContainerInner = styled.div`

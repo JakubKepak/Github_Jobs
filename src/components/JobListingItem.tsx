@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 import { differenceBetweenDates } from "../helpers/helpers";
+import Logo from "../assets/logo.svg";
 
 // styles
 const MainContainer = styled.div`
@@ -94,7 +95,10 @@ const JobListingItem: React.FC<Props> = ({ jobDetails }) => {
   return (
     <MainContainer>
       <CompanyLogoContainer>
-        <CompanyLogo src={jobDetails.company_logo} alt={jobDetails.company} />
+        <CompanyLogo
+          src={jobDetails.company_logo ? jobDetails.company_logo : Logo}
+          alt={jobDetails.company}
+        />
       </CompanyLogoContainer>
       <ContractInfoContainer>
         <span>{differenceBetweenDates(jobDetails.created_at)} ago</span>

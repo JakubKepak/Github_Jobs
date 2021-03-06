@@ -13,6 +13,7 @@ import Loader from "./Loader";
 const MainContainer = styled.div`
   width: 80%;
   max-width: 1440px;
+  min-height: calc(100vh - 8rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -70,19 +71,16 @@ const JobListingContainer: React.FC<{}> = () => {
   return (
     <MainContainer>
       <FilterMenu setPayload={triggerFilterHandler} />
+
+      <ContentContainer>
+        {state.data.map((job: any) => {
+          return <JobListingItem jobDetails={job} key={job.id} />;
+        })}
+      </ContentContainer>
       {!loading ? (
-        <>
-          <ContentContainer>
-            {state.data.map((job: any) => {
-              return <JobListingItem jobDetails={job} key={job.id} />;
-            })}
-          </ContentContainer>
-          {hasMore && (
-            <ButtonContainer onClick={loadMoreHandler}>
-              Load More
-            </ButtonContainer>
-          )}
-        </>
+        hasMore && (
+          <ButtonContainer onClick={loadMoreHandler}>Load More</ButtonContainer>
+        )
       ) : (
         <Loader />
       )}

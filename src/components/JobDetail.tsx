@@ -12,9 +12,11 @@ import Loader from "./Loader";
 const MainContainer = styled.div`
   width: 80%;
   max-width: 730px;
+  min-height: calc(100vh - 12rem);
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `;
 
 const HeaderContainer = styled.div`
@@ -43,6 +45,7 @@ const CompanyNameContainer = styled.div`
     font-weight: 700;
     padding-left: 2rem;
     font-size: 1.3rem;
+    color: ${(props) => props.theme.colors.fontColorDark};
   }
 `;
 
@@ -54,7 +57,7 @@ const CompanySiteButton = styled.button`
 const BodyContainer = styled.div`
   padding: 3rem;
   border-radius: ${(props) => props.theme.borderRadius};
-  background-color: ${(props) => props.theme.colors.secondary};
+  background-color: ${(props) => props.theme.colors.backgroundColorItem};
   margin: 2rem 0;
   width: 100%;
 `;
@@ -154,7 +157,7 @@ const FooterContainer = styled.div`
   margin-top: 3rem;
   position: fixed;
   bottom: 0;
-  background-color: ${(props) => props.theme.colors.secondary};
+  background-color: ${(props) => props.theme.colors.backgroundColorItem};
 `;
 
 const FooterInnerContainer = styled.div`
@@ -168,6 +171,7 @@ const FooterInfoContiner = styled.div`
   & p:nth-of-type(1) {
     font-weight: 700;
     margin-bottom: 0.7em;
+    color: ${(props) => props.theme.colors.fontColorDark};
   }
 
   & p:nth-of-type(2) {
@@ -235,15 +239,17 @@ const JobDetail: React.FC<{}> = () => {
           <Loader />
         )}
       </MainContainer>
-      <FooterContainer>
-        <FooterInnerContainer>
-          <FooterInfoContiner>
-            <p>{data.title}</p>
-            <p>{data.company}</p>
-          </FooterInfoContiner>
-          <ApplyNowButton>Apply Now</ApplyNowButton>
-        </FooterInnerContainer>
-      </FooterContainer>
+      {!loading && (
+        <FooterContainer>
+          <FooterInnerContainer>
+            <FooterInfoContiner>
+              <p>{data.title}</p>
+              <p>{data.company}</p>
+            </FooterInfoContiner>
+            <ApplyNowButton>Apply Now</ApplyNowButton>
+          </FooterInnerContainer>
+        </FooterContainer>
+      )}
     </>
   );
 };

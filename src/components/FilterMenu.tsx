@@ -2,7 +2,12 @@ import React, { useState } from "react";
 import styled from "styled-components";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faSearch, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
+import {
+  faSearch,
+  faMapMarkerAlt,
+  faFilter,
+  faTimes,
+} from "@fortawesome/free-solid-svg-icons";
 
 const MainContainer = styled.div`
   width: 100%;
@@ -21,6 +26,10 @@ const SearchBarContainer = styled.div`
   border-radius: 5px 0 0 5px;
   background-color: inherit;
   display: flex;
+
+  @media (max-width: 580px) {
+    width: 100%;
+  }
 `;
 
 const IconContainer = styled.div`
@@ -44,6 +53,28 @@ const FilterLocationContainer = styled.div`
   width: 30%;
   display: flex;
   border-left: 1px solid ${(props) => props.theme.colors.secondaryLight};
+
+  @media (max-width: 580px) {
+    display: none;
+  }
+`;
+
+const FilterLocationContainerModal = styled.div`
+  background-color: inherit;
+  width: 100%;
+  padding-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid ${(props) => props.theme.colors.secondaryLight};
+  color: ${(props) => props.theme.colors.fontColorDark};
+
+  & input {
+    margin-right: 2rem;
+  }
+
+  & input::placeholder {
+    color: ${(props) => props.theme.colors.fontColorLight};
+  }
 `;
 
 const FullTimeToggleContainer = styled.div`
@@ -52,6 +83,21 @@ const FullTimeToggleContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+
+  @media (max-width: 580px) {
+    display: none;
+  }
+`;
+
+const FullTimeToggleContainerModal = styled.div`
+  width: 100%;
+  border-left: 1px solid ${(props) => props.theme.colors.secondaryLight};
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 1rem 0;
+  padding-left: 1.2rem;
+  color: ${(props) => props.theme.colors.fontColorDark};
 `;
 
 const SearchButtonContainer = styled.div`
@@ -59,12 +105,14 @@ const SearchButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-right: 1rem;
 `;
 
 const CheckBoxContainer = styled.label`
   display: block;
   position: relative;
   padding-left: 35px;
+  margin-left: 10px;
   /* margin-bottom: 12px; */
   cursor: pointer;
   font-size: 22px;
@@ -87,12 +135,12 @@ const CheckBoxContainer = styled.label`
     left: 0;
     height: 20px;
     width: 20px;
-    background-color: #eee;
+    background-color: ${(props) => props.theme.colors.checkBoxBackground};
     border-radius: ${(props) => props.theme.borderRadius};
   }
 
   &:hover input ~ span {
-    background-color: #ccc;
+    background-color: ${(props) => props.theme.colors.checkBoxBackgroundHover};
   }
 
   & input:checked ~ span {
@@ -122,14 +170,76 @@ const CheckBoxContainer = styled.label`
   }
 `;
 
-const ButtonContainer = styled.button``;
+const ButtonContainerSearchSmall = styled.button`
+  @media (min-width: 581px) {
+    display: none;
+  }
+`;
+
+const ButtonContainerSearchLarge = styled.button`
+  @media (max-width: 580px) {
+    display: none;
+  }
+`;
+
+const FilterButtonContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+
+  @media (min-width: 581px) {
+    display: none;
+  }
+`;
+
+const FilterModalContainer = styled.div`
+  z-index: 3000;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);
+  position: fixed;
+  top: 0rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+const FilterModalContainerInner = styled.div`
+  z-index: 3500;
+  width: 90%;
+  max-width: 300px;
+  padding: 1rem 0;
+  background-color: ${(props) => props.theme.colors.backgroundColorItem};
+  border-radius: ${(props) => props.theme.borderRadius};
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+`;
+
+const ButtonContainerSearchModal = styled.button`
+  width: 80%;
+`;
+
+const CloseButton = styled.div`
+  z-index: 3600;
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  color: ${(props) => props.theme.colors.primary};
+`;
 
 const FilterMenu: React.FC<{ setPayload: any }> = (props) => {
   const [searchBarValue, setSearchBarValue] = useState<string>("");
   const [filterLocationValue, setFilterLocationValue] = useState<string>("");
   const [fullTimeOnly, setFullTimeOnly] = useState<boolean>(false);
+  const [filterModalOpened, setFilterModalOpened] = useState<boolean>(false);
 
   const triggerSearch = () => {
+    setFilterModalOpened(false);
     props.setPayload({
       description: searchBarValue,
       location: filterLocationValue,
@@ -138,47 +248,103 @@ const FilterMenu: React.FC<{ setPayload: any }> = (props) => {
   };
 
   return (
-    <MainContainer>
-      <SearchBarContainer>
-        <IconContainer>
-          <FontAwesomeIcon icon={faSearch} />
-        </IconContainer>
-        <InputField
-          placeholder="Filter by title, companies, expertise..."
-          value={searchBarValue}
-          onChange={(e) => {
-            setSearchBarValue(e.target.value);
-          }}
-        />
-      </SearchBarContainer>
-      <FilterLocationContainer>
-        <IconContainer>
-          <FontAwesomeIcon icon={faMapMarkerAlt} />
-        </IconContainer>
-        <InputField
-          placeholder="Filter by location"
-          onChange={(e) => {
-            setFilterLocationValue(e.target.value);
-          }}
-        />
-      </FilterLocationContainer>
-      <FullTimeToggleContainer>
-        <CheckBoxContainer>
-          <input
-            type="checkbox"
-            defaultChecked={fullTimeOnly}
-            onChange={() => {
-              setFullTimeOnly(!fullTimeOnly);
+    <>
+      <MainContainer>
+        <SearchBarContainer>
+          <IconContainer>
+            <FontAwesomeIcon icon={faSearch} />
+          </IconContainer>
+          <InputField
+            placeholder="Filter by title, companies, expertise..."
+            value={searchBarValue}
+            onChange={(e) => {
+              setSearchBarValue(e.target.value);
             }}
           />
-          <span></span>
-        </CheckBoxContainer>
-        <span>Full time only</span>
-      </FullTimeToggleContainer>
-      <SearchButtonContainer>
-        <ButtonContainer onClick={triggerSearch}>Search</ButtonContainer>
-      </SearchButtonContainer>
-    </MainContainer>
+        </SearchBarContainer>
+        <FilterLocationContainer>
+          <IconContainer>
+            <FontAwesomeIcon icon={faMapMarkerAlt} />
+          </IconContainer>
+          <InputField
+            placeholder="Filter by location"
+            onChange={(e) => {
+              setFilterLocationValue(e.target.value);
+            }}
+          />
+        </FilterLocationContainer>
+        <FullTimeToggleContainer>
+          <CheckBoxContainer>
+            <input
+              type="checkbox"
+              defaultChecked={fullTimeOnly}
+              onChange={() => {
+                setFullTimeOnly(!fullTimeOnly);
+              }}
+            />
+            <span></span>
+          </CheckBoxContainer>
+          <span>Full time</span>
+        </FullTimeToggleContainer>
+        <FilterButtonContainer>
+          <FontAwesomeIcon
+            icon={faFilter}
+            onClick={() => {
+              setFilterModalOpened(true);
+            }}
+          />
+        </FilterButtonContainer>
+        <SearchButtonContainer>
+          <ButtonContainerSearchLarge onClick={triggerSearch}>
+            Search
+          </ButtonContainerSearchLarge>
+          <ButtonContainerSearchSmall onClick={triggerSearch}>
+            <FontAwesomeIcon icon={faSearch} />
+          </ButtonContainerSearchSmall>
+        </SearchButtonContainer>
+      </MainContainer>
+      {filterModalOpened && (
+        <FilterModalContainer>
+          <FilterModalContainerInner>
+            <CloseButton>
+              <FontAwesomeIcon
+                icon={faTimes}
+                onClick={() => {
+                  setFilterModalOpened(false);
+                }}
+              />
+            </CloseButton>
+            <FilterLocationContainerModal>
+              <IconContainer>
+                <FontAwesomeIcon icon={faMapMarkerAlt} />
+              </IconContainer>
+              <InputField
+                placeholder="Filter by location"
+                onChange={(e) => {
+                  setFilterLocationValue(e.target.value);
+                }}
+              />
+            </FilterLocationContainerModal>
+            <FullTimeToggleContainerModal>
+              <CheckBoxContainer>
+                <input
+                  type="checkbox"
+                  defaultChecked={fullTimeOnly}
+                  onChange={() => {
+                    setFullTimeOnly(!fullTimeOnly);
+                  }}
+                />
+                <span></span>
+              </CheckBoxContainer>
+              <span>Full time only</span>
+            </FullTimeToggleContainerModal>
+            <ButtonContainerSearchModal onClick={triggerSearch}>
+              Search
+            </ButtonContainerSearchModal>
+          </FilterModalContainerInner>
+        </FilterModalContainer>
+      )}
+    </>
   );
 };
 

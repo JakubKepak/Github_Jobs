@@ -7,6 +7,8 @@ declare module "styled-components" {
     colors: {
       backgroundColor: string;
       backgroundColorItem: string;
+      checkBoxBackground: string;
+      checkBoxBackgroundHover: string;
       fontColorDark: string;
       fontColorLight: string;
       primary?: string;
