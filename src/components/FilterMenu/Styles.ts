@@ -161,13 +161,13 @@ export const CheckBoxContainer = styled.label`
   }
 `;
 
-export const ButtonContainerSearchSmall = styled.button`
+export const ButtonContainerSearchSmall = styled.div`
   @media (min-width: 581px) {
     display: none;
   }
 `;
 
-export const ButtonContainerSearchLarge = styled.button`
+export const ButtonContainerSearchLarge = styled.div`
   @media (max-width: 580px) {
     display: none;
   }
@@ -209,10 +209,6 @@ export const FilterModalContainerInner = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-`;
-
-export const ButtonContainerSearchModal = styled.button`
-  width: 80%;
 `;
 
 export const CloseButton = styled.div`

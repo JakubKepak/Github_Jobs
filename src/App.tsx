@@ -46,29 +46,6 @@ const GlobalStyles = createGlobalStyle`
       font-family: inherit;
     }
   }
-
-    button {
-      font-family: inherit;
-      border: none;
-      height: 2.5rem;
-      width: 6rem;
-      font-weight: 700;
-      border-radius: ${(props) => props.theme.borderRadius};
-      color: ${(props) => props.theme.colors.secondary};
-      background-color: ${(props) => props.theme.colors.primary};
-
-      &:focus {
-        outline: none;
-      }
-
-      &:hover {
-         cursor: pointer;
-      }
-
-      &:active {
-        background-color: ${(props) => props.theme.colors.primaryLight};
-      }
-    }
 `;
 
 const ContentContainer = styled.div`
@@ -95,7 +72,7 @@ const App: React.FC<{}> = () => {
         <Switch>
           <ContentContainer>
             <Route exact path="/">
-              <JobsListingsContainer></JobsListingsContainer>
+              <JobsListingsContainer />
             </Route>
             <Route path="/:id">
               <JobDetail />

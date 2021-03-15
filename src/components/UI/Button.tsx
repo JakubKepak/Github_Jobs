@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const MainContainer = styled.button<{ variant?: string }>`
+const MainContainer = styled.button<{ variant?: string; size: any }>`
   font-family: inherit;
   border: none;
   height: 2.5rem;
@@ -32,18 +32,38 @@ const MainContainer = styled.button<{ variant?: string }>`
     background-color: ${props.theme.colors.primaryLight};
   }
   `};
+
+  ${(props) =>
+    props.size === "small" &&
+    `
+    min-width: 3rem;
+`}
+
+  ${(props) =>
+    props.size === "max-width" &&
+    `
+    width: 80%;
+    min-width: 3rem;
+`}
 `;
 
 interface Props {
   variant: "primary" | "secondary";
+  size?: "medium" | "small" | "max-width" | undefined;
   children?: any;
   onClick?: any;
   type?: any;
 }
 
-export default function Button({ variant, children, onClick, type }: Props) {
+export default function Button({
+  variant,
+  children,
+  onClick,
+  type,
+  size,
+}: Props) {
   return (
-    <MainContainer type={type} onClick={onClick} variant={variant}>
+    <MainContainer type={type} onClick={onClick} variant={variant} size={size}>
       {children}
     </MainContainer>
   );

@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import * as S from "./Styles";
 
+import Button from "../UI/Button";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faSearch,
@@ -72,11 +74,15 @@ const FilterMenu: React.FC<{ setPayload: any }> = (props) => {
           />
         </S.FilterButtonContainer>
         <S.SearchButtonContainer>
-          <S.ButtonContainerSearchLarge onClick={triggerSearch}>
-            Search
+          <S.ButtonContainerSearchLarge>
+            <Button variant="primary" onClick={triggerSearch}>
+              Search
+            </Button>
           </S.ButtonContainerSearchLarge>
-          <S.ButtonContainerSearchSmall onClick={triggerSearch}>
-            <FontAwesomeIcon icon={faSearch} />
+          <S.ButtonContainerSearchSmall>
+            <Button variant="primary" onClick={triggerSearch} size="small">
+              <FontAwesomeIcon icon={faSearch} />
+            </Button>
           </S.ButtonContainerSearchSmall>
         </S.SearchButtonContainer>
       </S.MainContainer>
@@ -115,9 +121,9 @@ const FilterMenu: React.FC<{ setPayload: any }> = (props) => {
               </S.CheckBoxContainer>
               <span>Full time only</span>
             </S.FullTimeToggleContainerModal>
-            <S.ButtonContainerSearchModal onClick={triggerSearch}>
+            <Button variant="primary" onClick={triggerSearch} size="max-width">
               Search
-            </S.ButtonContainerSearchModal>
+            </Button>
           </S.FilterModalContainerInner>
         </S.FilterModalContainer>
       )}

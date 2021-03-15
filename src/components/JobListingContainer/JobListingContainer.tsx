@@ -9,6 +9,7 @@ import { jobListingsReducer } from "../../reducers/jobListingsReducer";
 
 import FilterMenu from "../FilterMenu/FilterMenu";
 import Loader from "../UI/Loader";
+import Button from "../UI/Button";
 
 interface Payload {
   description?: string;
@@ -57,9 +58,9 @@ const JobListingContainer: React.FC<{}> = () => {
       </S.ContentContainer>
       {!loading ? (
         hasMore && (
-          <S.ButtonContainer onClick={loadMoreHandler}>
+          <Button variant="primary" onClick={loadMoreHandler}>
             Load More
-          </S.ButtonContainer>
+          </Button>
         )
       ) : (
         <Loader />
