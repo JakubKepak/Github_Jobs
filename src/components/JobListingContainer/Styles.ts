@@ -7,6 +7,7 @@ export const MainContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom: 2rem;
 `;
 
 export const ContentContainer = styled.div`
@@ -20,4 +21,4 @@ export const ContentContainer = styled.div`
   justify-content: center;
 `;
 
-export const ButtonContainer = styled.button``;
+// export const ButtonContainer = styled.button``;

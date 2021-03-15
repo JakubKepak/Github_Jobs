@@ -10,6 +10,10 @@ export const MainContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media (max-width: 600px) {
+    width: 90%;
+  }
 `;
 
 export const HeaderContainer = styled.div`
@@ -21,6 +25,12 @@ export const HeaderContainer = styled.div`
   justify-content: space-between;
   padding-right: 3rem;
   background-color: ${(props) => props.theme.colors.backgroundColorItem};
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    padding-bottom: 1rem;
+    padding-right: 0;
+  }
 `;
 
 export const CompanyLogoContainer = styled.div`
@@ -28,6 +38,14 @@ export const CompanyLogoContainer = styled.div`
   height: 100%;
   display: flex;
   align-items: center;
+  background-color: ${(props) => props.theme.colors.secondary};
+
+  @media (max-width: 600px) {
+    width: 50px;
+    height: 50px;
+    margin-top: -25px;
+    border-radius: ${(props) => props.theme.borderRadius};
+  }
 `;
 
 export const CompanyLogo = styled.img`
@@ -42,6 +60,11 @@ export const CompanyNameContainer = styled.div`
     font-size: 1.3rem;
     color: ${(props) => props.theme.colors.fontColorDark};
   }
+
+  @media (max-width: 600px) {
+    display: flex;
+    justify-content: center;
+  }
 `;
 
 export const BodyContainer = styled.div`
@@ -50,6 +73,10 @@ export const BodyContainer = styled.div`
   background-color: ${(props) => props.theme.colors.backgroundColorItem};
   margin: 2rem 0;
   width: 100%;
+
+  @media (max-width: 600px) {
+    padding: 2rem 1rem;
+  }
 `;
 
 export const BodyHeaderContainer = styled.div`
@@ -57,9 +84,21 @@ export const BodyHeaderContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   margin-bottom: 3rem;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+
+    & button {
+      width: 100%;
+    }
+  }
 `;
 
-export const PositionInfoContainer = styled.div``;
+export const PositionInfoContainer = styled.div`
+  @media (max-width: 600px) {
+    margin-bottom: 2rem;
+  }
+`;
 
 export const ContractInfoContainer = styled.div`
   display: flex;
@@ -82,6 +121,11 @@ export const TitleInfo = styled.span`
   font-weight: 700;
   font-size: 1.5rem;
   color: ${(props) => props.theme.colors.fontColorDark};
+
+  @media (max-width: 600px) {
+    font-size: 1rem;
+    line-height: 1.4em;
+  }
 `;
 
 export const LocationInfoContainer = styled.div`
@@ -157,9 +201,25 @@ export const FooterInnerContainer = styled.div`
   padding: 1rem 0;
   display: flex;
   justify-content: space-between;
+
+  @media (max-width: 420px) {
+    width: 90%;
+
+    & button {
+      width: 100%;
+    }
+
+    justify-content: center;
+  }
 `;
 
 export const FooterInfoContiner = styled.div`
+  & p {
+    @media (max-width: 420px) {
+      display: none;
+    }
+  }
+
   & p:nth-of-type(1) {
     font-weight: 700;
     margin-bottom: 0.7em;
