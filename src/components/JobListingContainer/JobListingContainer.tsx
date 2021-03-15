@@ -1,36 +1,14 @@
 import React, { useEffect, useReducer } from "react";
-import styled from "styled-components";
+import * as S from "./Styles";
 
 // components
-import JobListingItem from "./JobListingItem";
+import JobListingItem from "../JobListingItem/JobListingItem";
 
-import useFetch from "../hooks/useFetch";
-import { jobListingsReducer } from "../reducers/jobListingsReducer";
+import useFetch from "../../hooks/useFetch";
+import { jobListingsReducer } from "../../reducers/jobListingsReducer";
 
-import FilterMenu from "./FilterMenu";
-import Loader from "./Loader";
-
-const MainContainer = styled.div`
-  width: 80%;
-  max-width: 1440px;
-  min-height: calc(100vh - 8rem);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-
-const ContentContainer = styled.div`
-  width: 100%;
-  margin-top: 6rem;
-  margin-bottom: 2rem;
-
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 350px));
-  grid-gap: 2rem;
-  justify-content: center;
-`;
-
-const ButtonContainer = styled.button``;
+import FilterMenu from "../FilterMenu/FilterMenu";
+import Loader from "../UI/Loader";
 
 interface Payload {
   description?: string;
@@ -69,22 +47,24 @@ const JobListingContainer: React.FC<{}> = () => {
   }, [data]);
 
   return (
-    <MainContainer>
+    <S.MainContainer>
       <FilterMenu setPayload={triggerFilterHandler} />
 
-      <ContentContainer>
+      <S.ContentContainer>
         {state.data.map((job: any) => {
           return <JobListingItem jobDetails={job} key={job.id} />;
         })}
-      </ContentContainer>
+      </S.ContentContainer>
       {!loading ? (
         hasMore && (
-          <ButtonContainer onClick={loadMoreHandler}>Load More</ButtonContainer>
+          <S.ButtonContainer onClick={loadMoreHandler}>
+            Load More
+          </S.ButtonContainer>
         )
       ) : (
         <Loader />
       )}
-    </MainContainer>
+    </S.MainContainer>
   );
 };
 

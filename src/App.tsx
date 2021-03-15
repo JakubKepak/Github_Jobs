@@ -7,10 +7,10 @@ import styled, {
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // components
-import Header from "./components/Header";
-import JobDetail from "./components/JobDetail";
+import Header from "./components/Header/Header";
+import JobDetail from "./components/JobDetail/JobDetail";
 
-import JobsListingsContainer from "./components/JobListingContainer";
+import JobsListingsContainer from "./components/JobListingContainer/JobListingContainer";
 
 import { lightTheme, darkTheme } from "./themes";
 

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import spinner from "../assets/spinner.svg";
+import spinner from "../../assets/spinner.svg";
 
 const LaderContainer = styled.div`
   display: flex;

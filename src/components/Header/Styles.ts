@@ -1,11 +1,8 @@
-import React from "react";
 import styled from "styled-components";
 
-import headerBackground from "../assets/bg-pattern-header.svg";
-import IconMoon from "../assets/icon-moon.svg";
-import IconSun from "../assets/icon-sun.svg";
+import headerBackground from "../../assets/bg-pattern-header.svg";
 
-const MainContainer = styled.div`
+export const MainContainer = styled.div`
   width: 100%;
   height: 10rem;
   background-color: ${(props) => props.theme.colors.primary};
@@ -22,7 +19,7 @@ const MainContainer = styled.div`
   }
 `;
 
-const ContainerInner = styled.div`
+export const ContainerInner = styled.div`
   width: 80%;
   max-width: 1440px;
   margin-top: 3rem;
@@ -33,23 +30,23 @@ const ContainerInner = styled.div`
   color: white;
 `;
 
-const Logo = styled.span`
+export const Logo = styled.span`
   font-size: 2rem;
   font-weight: 700;
 `;
 
-const ToggleThemeContainer = styled.div``;
-const ToggleThemeContainerInner = styled.div`
+export const ToggleThemeContainer = styled.div``;
+export const ToggleThemeContainerInner = styled.div`
   display: flex;
   align-items: center;
 `;
 
-const ToggleThemeIcon = styled.img`
+export const ToggleThemeIcon = styled.img`
   width: 15px;
   height: 15px;
 `;
 
-const ToggleButton = styled.label`
+export const ToggleButton = styled.label`
   position: relative;
   display: inline-block;
   width: 50px;
@@ -93,30 +90,3 @@ const ToggleButton = styled.label`
     transform: translateX(26px);
   }
 `;
-
-const Header: React.FC<{ toggleThemes: (isDarkTheme: boolean) => void }> = ({
-  toggleThemes,
-}): JSX.Element => {
-  return (
-    <MainContainer>
-      <ContainerInner>
-        <Logo>devjobs</Logo>
-        <ToggleThemeContainer>
-          <ToggleThemeContainerInner>
-            <ToggleThemeIcon src={IconSun} alt="ligh theme icon" />
-            <ToggleButton>
-              <input
-                type="checkbox"
-                onChange={(e) => toggleThemes(e.target.checked)}
-              />
-              <span></span>
-            </ToggleButton>
-            <ToggleThemeIcon src={IconMoon} alt="dark theme icon" />
-          </ToggleThemeContainerInner>
-        </ToggleThemeContainer>
-      </ContainerInner>
-    </MainContainer>
-  );
-};
-
-export default Header;
