@@ -18,6 +18,8 @@ export const HeaderContainer = styled.div`
   border-radius: ${(props) => props.theme.borderRadius};
   display: flex;
   align-items: center;
+  justify-content: space-between;
+  padding-right: 3rem;
   background-color: ${(props) => props.theme.colors.backgroundColorItem};
 `;
 
@@ -42,11 +44,6 @@ export const CompanyNameContainer = styled.div`
   }
 `;
 
-export const CompanySiteButton = styled.button`
-  margin-left: auto;
-  margin-right: 3rem;
-`;
-
 export const BodyContainer = styled.div`
   padding: 3rem;
   border-radius: ${(props) => props.theme.borderRadius};
@@ -58,6 +55,7 @@ export const BodyContainer = styled.div`
 export const BodyHeaderContainer = styled.div`
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 3rem;
 `;
 
@@ -158,6 +156,7 @@ export const FooterInnerContainer = styled.div`
   max-width: 730px;
   padding: 1rem 0;
   display: flex;
+  justify-content: space-between;
 `;
 
 export const FooterInfoContiner = styled.div`
@@ -170,8 +169,4 @@ export const FooterInfoContiner = styled.div`
   & p:nth-of-type(2) {
     color: ${(props) => props.theme.colors.fontColorLight};
   }
-`;
-
-export const ApplyNowButton = styled.button`
-  margin-left: auto;
 `;

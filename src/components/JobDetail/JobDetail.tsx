@@ -6,6 +6,7 @@ import useFetch from "../../hooks/useFetch";
 import { differenceBetweenDates } from "../../helpers/helpers";
 
 import Loader from "../UI/Loader";
+import Button from "../UI/Button";
 
 const JobDetail: React.FC<{}> = () => {
   const { id } = useParams<Record<string, string | undefined>>();
@@ -26,7 +27,7 @@ const JobDetail: React.FC<{}> = () => {
               <S.CompanyNameContainer>
                 <p>{data.company}</p>
               </S.CompanyNameContainer>
-              <S.CompanySiteButton>Company Site</S.CompanySiteButton>
+              <Button variant="primary">Company Site</Button>
             </S.HeaderContainer>
             <S.BodyContainer>
               <S.BodyHeaderContainer>
@@ -46,7 +47,7 @@ const JobDetail: React.FC<{}> = () => {
                       })}
                   </S.LocationInfoContainer>
                 </S.PositionInfoContainer>
-                <S.ApplyNowButton>Apply Now</S.ApplyNowButton>
+                <Button variant="primary">Apply Now</Button>
               </S.BodyHeaderContainer>
               <S.BodyContentContainer
                 dangerouslySetInnerHTML={{ __html: data.description }}
@@ -70,7 +71,7 @@ const JobDetail: React.FC<{}> = () => {
               <p>{data.title}</p>
               <p>{data.company}</p>
             </S.FooterInfoContiner>
-            <S.ApplyNowButton>Apply Now</S.ApplyNowButton>
+            <Button variant="primary">Apply Now</Button>
           </S.FooterInnerContainer>
         </S.FooterContainer>
       )}
