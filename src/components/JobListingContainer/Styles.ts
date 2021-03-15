@@ -8,6 +8,10 @@ export const MainContainer = styled.div`
   flex-direction: column;
   align-items: center;
   margin-bottom: 2rem;
+
+  @media (max-width: 600px) {
+    width: 90%;
+  }
 `;
 
 export const ContentContainer = styled.div`

@@ -24,6 +24,8 @@ const FilterMenu: React.FC<{ setPayload: any }> = (props) => {
       location: filterLocationValue,
       full_time: fullTimeOnly,
     });
+    setSearchBarValue("");
+    setFilterLocationValue("");
   };
 
   return (
