@@ -9,7 +9,11 @@
 
 ### How to run project locally  
 1. Clone the repository  
-`git clone https://github.com/JakubKepak/Github_Jobs.git`
+```
+git clone https://github.com/JakubKepak/Github_Jobs.git
+```
 
 2. Run   
-   `npm start`
+```
+npm start
+```
